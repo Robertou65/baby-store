@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-30T21:44:00Z",
+  "title": "Design System: Baby Store",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Sunshine Yellow",
+        "canonical": "#FFB800",
+        "tonalRamp": ["#78350F", "#92400E", "#B45309", "#D97706", "#F59E0B", "#FFB800", "#FDE68A", "#FEF3C7"]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Sky Blue",
+        "canonical": "#0EA5E9",
+        "tonalRamp": ["#082F49", "#0C4A6E", "#0369A1", "#0284C7", "#0EA5E9", "#38BDF8", "#BAE6FD", "#E0F2FE"]
+      },
+      "tertiary": {
+        "role": "tertiary",
+        "displayName": "Coral Strawberry",
+        "canonical": "#F43F5E",
+        "tonalRamp": ["#4C0519", "#881337", "#BE123C", "#E11D48", "#F43F5E", "#FB7185", "#FECDD3", "#FFE4E6"]
+      },
+      "accent-mint": {
+        "role": "accent",
+        "displayName": "Mint Sprout",
+        "canonical": "#10B981",
+        "tonalRamp": ["#022C22", "#064E3B", "#047857", "#059669", "#10B981", "#34D399", "#A7F3D0", "#D1FAE5"]
+      },
+      "neutral-bg": {
+        "role": "neutral",
+        "displayName": "Warm Cloud Ground",
+        "canonical": "#FDFBF7",
+        "tonalRamp": ["#1E293B", "#334155", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F1F5F9", "#FDFBF7"]
+      },
+      "text-charcoal": {
+        "role": "neutral",
+        "displayName": "Toy Charcoal",
+        "canonical": "#1E293B",
+        "tonalRamp": ["#020617", "#0F172A", "#1E293B", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Fredoka Rounded",
+        "purpose": "Joyful headings, buttons, and brand titles"
+      },
+      "body": {
+        "displayName": "Plus Jakarta Sans",
+        "purpose": "High-legibility descriptions, product specs, and tabular prices"
+      }
+    },
+    "shadows": [
+      {
+        "name": "block-lift",
+        "value": "0 4px 16px rgba(251, 191, 36, 0.25)",
+        "purpose": "Warm amber lift under primary actions"
+      },
+      {
+        "name": "card-ambient",
+        "value": "0 2px 12px rgba(0, 0, 0, 0.04)",
+        "purpose": "Soft ambient shadow for product block containers"
+      }
+    ],
+    "motion": [
+      {
+        "name": "spring-snappy",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "Tactile bounce feedback on button taps and card selections"
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Add Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Tactile yellow playroom action button for adding diapers to cart.",
+      "html": "<button class=\"ds-btn-primary\">Agregar al carrito</button>",
+      "css": ".ds-btn-primary { background: #FFB800; color: #451a03; padding: 12px 24px; border-radius: 16px; font-weight: 700; font-family: 'Fredoka', cursive, sans-serif; border: 2px solid transparent; cursor: pointer; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 4px 12px rgba(255, 184, 0, 0.3); } .ds-btn-primary:hover { background: #FBBF24; transform: scale(1.02); } .ds-btn-primary:active { transform: scale(0.97); }"
+    },
+    {
+      "name": "WhatsApp Order Button",
+      "kind": "button",
+      "refersTo": "button-whatsapp",
+      "description": "Emerald dispatch button opening pre-filled order in WhatsApp.",
+      "html": "<button class=\"ds-btn-wa\">Pedir por WhatsApp</button>",
+      "css": ".ds-btn-wa { background: #059669; color: #ffffff; padding: 16px 24px; border-radius: 16px; font-weight: 700; font-family: 'Fredoka', cursive, sans-serif; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3); } .ds-btn-wa:hover { background: #10B981; transform: scale(1.01); }"
+    },
+    {
+      "name": "Stage Filter Pill",
+      "kind": "chip",
+      "refersTo": "chip-filter",
+      "description": "Chunky stage selector pill indicating diaper sizes T0 to T5.",
+      "html": "<div class=\"ds-stage-pill active\"><span class=\"ds-stage-title\">Talla 1</span><span class=\"ds-stage-sub\">4 a 7 kg</span></div>",
+      "css": ".ds-stage-pill { background: #FDFBF7; border: 2px solid #E2E8F0; border-radius: 16px; padding: 12px; font-family: 'Fredoka', cursive, sans-serif; cursor: pointer; } .ds-stage-pill.active { background: #FEF3C7; border-color: #F59E0B; box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2); } .ds-stage-title { display: block; font-weight: 700; font-size: 16px; color: #1E293B; } .ds-stage-sub { font-size: 11px; color: #64748B; font-family: sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Playroom Block System",
+    "overview": "The visual language of Baby Store draws direct inspiration from tactile wooden toy blocks, Montessori shape sorters, and early childhood wonder. It balances vibrant, joyful colors with the dependability and hygiene clarity that parents require when shopping for their little ones.",
+    "keyCharacteristics": [
+      "Chunky, tactile toy-block form language with child-safe rounded geometries.",
+      "Vibrant, saturated palette anchored on warm cream and soft white grounds.",
+      "Instant, high-contrast size (T0–T5) and price scanning designed specifically for one-handed mobile browsing.",
+      "Springy, tactile micro-feedback on filter chips and action buttons."
+    ],
+    "rules": [
+      {
+        "name": "The Warm Foundation Rule",
+        "body": "Saturated vibrant tones must always sit on warm cloud white or gentle cream canvases, never on sterile blue-gray or harsh stark black.",
+        "section": "colors"
+      },
+      {
+        "name": "The Stage Distinction Rule",
+        "body": "Diaper sizes (T0 through T5) and product categories must utilize distinct, repeatable accent colors so parents can identify product stages instantly without rereading copy.",
+        "section": "colors"
+      },
+      {
+        "name": "The Glanceable Metric Rule",
+        "body": "Diaper stage sizes, unit counts, and Colombian Peso prices must always be rendered in high-legibility tabular sans, never in decorative or cursive type.",
+        "section": "typography"
+      },
+      {
+        "name": "The Thumb-Reach Rule",
+        "body": "The primary ordering flow, diaper size selector chips, and cart summary must remain anchored or easily accessible within the lower 60% of the mobile viewport.",
+        "section": "layout"
+      },
+      {
+        "name": "The Child-Safe Corner Rule",
+        "body": "Every container, card, badge, input, and button must carry a softened radius (minimum 12px for small controls, 20px–28px for cards, and fully rounded pills for badges). Sharp corners are prohibited.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do celebrate vibrant, joyful colors across category chips, stage indicators, and joyful accents.",
+      "Do preserve immediate clarity for diaper brands, stage sizes (T0–T5), package quantities (16u–100u), and COP prices.",
+      "Do use bouncy, tactile spring animations for tap and hover interactions to evoke playful wooden toys.",
+      "Do anchor bright colors on soft, warm off-white grounds so the interface remains comfortable during nocturnal browsing."
+    ],
+    "donts": [
+      "Don't create a sterile, cold, clinical pharmaceutical look with monochrome gray or hospital cyan.",
+      "Don't use decorative display fonts for critical parental information like sizes, unit counts, or prices.",
+      "Don't use sharp square corners or harsh black drop shadows.",
+      "Don't bury diaper stages or unit prices behind multiple clicks or obscured dropdowns."
+    ]
+  }
+}

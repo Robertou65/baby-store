@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Fredoka', cursive, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  --color-warm-cloud: #FDFBF7;
+  --color-play-yellow: #FFB800;
+  --color-play-blue: #0EA5E9;
+  --color-play-coral: #F43F5E;
+  --color-play-mint: #10B981;
+  --color-play-purple: #8B5CF6;
+  --color-play-orange: #F97316;
+  --color-toy-charcoal: #1E293B;
+  --color-toy-card: #FFFFFF;
+}
+
+/* Custom scrollbars themed for the Playroom world */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8F5EE;
+}
+::-webkit-scrollbar-thumb {
+  background: #E2DCD2;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FFB800;
+}
+
+/* Accessible focus styling */
+:focus-visible {
+  outline: 3px solid #0EA5E9;
+  outline-offset: 2px;
+}
