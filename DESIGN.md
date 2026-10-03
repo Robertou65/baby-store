@@ -9,6 +9,9 @@ colors:
   neutral-bg: "#FDFBF7"
   card-white: "#FFFFFF"
   text-charcoal: "#1E293B"
+  text-amber-dark: "#451a03"
+  neutral-warm-tint: "#F8F5EE"
+  neutral-sand: "#E2DCD2"
 typography:
   display:
     fontFamily: "Fredoka, cursive, sans-serif"

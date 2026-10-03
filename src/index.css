@@ -15,7 +15,36 @@
   --color-toy-card: #FFFFFF;
 }
 
-/* Custom scrollbars themed for the Playroom world */
+/* Browser surfaces: selection themed from brand palette */
+::selection {
+  background-color: #FFB800;
+  color: #451a03;
+}
+
+/* Caret color themed from sunshine yellow */
+input,
+textarea {
+  caret-color: #FFB800;
+}
+
+/* Tabular numerals for prices and quantities */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Accessible underline styling */
+a {
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+}
+
+/* Custom scrollbars themed for the Playroom world (WebKit & Firefox) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #E2DCD2 #F8F5EE;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

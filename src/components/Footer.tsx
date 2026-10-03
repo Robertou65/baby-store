@@ -1,18 +1,17 @@
-import React from 'react';
+import { memo } from 'react';
 import { MessageCircle, Heart, Sparkles } from 'lucide-react';
+import { BrandLogo } from './BrandLogo';
 
-export const Footer: React.FC = () => {
+export const Footer = memo(function Footer() {
   return (
     <footer className="bg-white border-t-2 border-amber-200/80 mt-16 pt-12 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           {/* Brand Info */}
           <div className="md:col-span-2 space-y-3">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-2xl bg-amber-400 flex items-center justify-center shadow-xs">
-                <span className="text-xl">🧸</span>
-              </div>
-              <span className="font-['Fredoka'] text-2xl font-bold text-slate-800">
+            <div className="flex items-center gap-2.5">
+              <BrandLogo size="sm" />
+              <span className="font-['Fredoka'] text-2xl font-bold text-slate-900">
                 Baby<span className="text-amber-500">Store</span>
               </span>
             </div>
@@ -30,17 +29,17 @@ export const Footer: React.FC = () => {
             <h4 className="font-['Fredoka'] text-base font-bold text-slate-900 mb-3">
               Marcas Destacadas
             </h4>
-            <ul className="space-y-2 text-sm text-slate-600 font-medium">
-              <li className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-sky-500" />
+            <ul className="space-y-2 text-sm text-slate-700 font-medium">
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-sky-500 shrink-0" />
                 <span>Winny (Sensitive & Ultratrim Sec)</span>
               </li>
-              <li className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-amber-500" />
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" />
                 <span>Pequeñín (New Baby & Extra Protección)</span>
               </li>
-              <li className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-rose-500" />
+              <li className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
                 <span>Babysec (Ultra Protect)</span>
               </li>
             </ul>
@@ -51,14 +50,14 @@ export const Footer: React.FC = () => {
             <h4 className="font-['Fredoka'] text-base font-bold text-slate-900 mb-3">
               Atención al Cliente
             </h4>
-            <p className="text-xs text-slate-500 mb-3">
+            <p className="text-xs text-slate-600 mb-3">
               ¿Dudas con la talla o necesitas un pedido urgente?
             </p>
             <a
               href="https://wa.me/573001234567?text=Hola,%20necesito%20asesoría%20con%20los%20pañales"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-['Fredoka'] font-bold text-xs shadow-xs transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-['Fredoka'] font-bold text-xs shadow-xs focus-visible:ring-2 focus-visible:ring-emerald-400 transition-all"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Chatear por WhatsApp</span>
@@ -67,9 +66,9 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© {new Date().getFullYear()} Baby Store Colombia. Todos los derechos reservados.</p>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <span>Hecho con</span>
             <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
             <span>para las familias colombianas</span>
@@ -78,4 +77,4 @@ export const Footer: React.FC = () => {
       </div>
     </footer>
   );
-};
+});

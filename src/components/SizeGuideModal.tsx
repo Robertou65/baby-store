@@ -1,11 +1,12 @@
-import React from 'react';
-import { X, Ruler, CheckCircle2 } from 'lucide-react';
+import { useEffect, memo } from 'react';
+import { X, Ruler, CheckCircle2, Lightbulb } from 'lucide-react';
 import { getStageColor } from '../utils/format';
 
 interface SizeGuideModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectStage: (stage: string) => void;
+  onScrollToCatalog?: () => void;
 }
 
 const GUIDE_DATA = [
@@ -51,15 +52,51 @@ const GUIDE_DATA = [
   },
 ];
 
-export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
+export const SizeGuideModal = memo<SizeGuideModalProps>(function SizeGuideModal({
   isOpen,
   onClose,
   onSelectStage,
-}) => {
+  onScrollToCatalog,
+}) {
+  // Lock body scroll and listen for Escape key to close
+  useEffect(() => {
+    if (!isOpen) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
+  const handleChooseStage = (stage: string) => {
+    onSelectStage(stage);
+    onClose();
+    if (onScrollToCatalog) {
+      // Small timeout to allow modal animation / DOM update to settle
+      setTimeout(() => {
+        onScrollToCatalog();
+      }, 50);
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto">
+    <div
+      className="fixed inset-0 z-50 overflow-y-auto"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="size-guide-title"
+    >
       <div className="flex min-h-full items-center justify-center p-4 text-center">
         {/* Backdrop */}
         <div
@@ -75,10 +112,10 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                 <Ruler className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-['Fredoka'] text-xl font-bold text-slate-900">
+                <h3 id="size-guide-title" className="font-['Fredoka'] text-xl font-bold text-slate-900">
                   Guía de Tallas y Etapas
                 </h3>
-                <p className="text-xs text-slate-500 font-medium">
+                <p className="text-xs text-slate-600 font-medium">
                   Orientación por peso para elegir el pañal correcto
                 </p>
               </div>
@@ -86,7 +123,8 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+              className="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-amber-400 transition-colors cursor-pointer"
+              aria-label="Cerrar guía de tallas"
             >
               <X className="w-5 h-5" />
             </button>
@@ -111,25 +149,23 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
                         <h4 className="font-['Fredoka'] text-base font-bold text-slate-800">
                           {item.title}
                         </h4>
-                        <span className="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md">
+                        <span className="text-xs font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-md">
                           {item.weight}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-500 mt-0.5">
+                      <p className="text-xs text-slate-600 mt-0.5">
                         Edad aprox: <strong>{item.age}</strong> • Uso promedio: <strong>{item.diapersPerDay}</strong>
                       </p>
-                      <p className="text-[11px] text-amber-800 bg-amber-50 rounded-lg px-2.5 py-1 mt-2 inline-block">
-                        💡 {item.tip}
-                      </p>
+                      <div className="flex items-center gap-1.5 text-xs text-amber-950 bg-amber-50 border border-amber-200/60 rounded-xl px-2.5 py-1.5 mt-2">
+                        <Lightbulb className="w-3.5 h-3.5 text-amber-700 shrink-0" />
+                        <span>{item.tip}</span>
+                      </div>
                     </div>
                   </div>
 
                   <button
-                    onClick={() => {
-                      onSelectStage(item.stage);
-                      onClose();
-                    }}
-                    className="self-end sm:self-center shrink-0 px-4 py-2 rounded-xl bg-slate-900 hover:bg-amber-500 hover:text-amber-950 text-white font-['Fredoka'] text-xs font-bold transition-colors cursor-pointer"
+                    onClick={() => handleChooseStage(item.stage)}
+                    className="self-end sm:self-center shrink-0 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-amber-500 hover:text-amber-950 text-white font-['Fredoka'] text-xs font-bold transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-amber-400"
                   >
                     Ver pañales {item.stage}
                   </button>
@@ -138,14 +174,14 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
             })}
           </div>
 
-          <div className="mt-5 pt-4 border-t border-amber-200/80 flex items-center justify-between">
-            <div className="flex items-center gap-1.5 text-xs text-slate-500">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+          <div className="mt-5 pt-4 border-t border-amber-200/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-1.5 text-xs text-slate-600">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Si tu bebé está entre dos tallas, te recomendamos elegir la más grande.</span>
             </div>
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold transition-colors"
+              className="self-end sm:self-auto px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold transition-colors cursor-pointer focus-visible:ring-2 focus-visible:ring-slate-400"
             >
               Cerrar
             </button>
@@ -154,4 +190,4 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({
       </div>
     </div>
   );
-};
+});

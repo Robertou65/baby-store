@@ -221,3 +221,9 @@ export const CATEGORIES = [
   { id: 'care', name: 'Aseo & Cuidado', icon: 'Heart', active: false, count: 0, tag: 'Próximamente' },
   { id: 'essentials', name: 'Esenciales', icon: 'Gift', active: false, count: 0, tag: 'Próximamente' },
 ];
+
+// O(1) index map for product lookup (js-index-maps, js-set-map-lookups)
+export const PRODUCT_MAP = new Map<string, Product>(
+  PRODUCTS.map((product) => [product.id, product])
+);
+
